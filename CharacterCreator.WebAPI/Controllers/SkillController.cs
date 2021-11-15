@@ -32,5 +32,13 @@ namespace CharacterCreator.WebAPI.Controllers
 
             return Ok();
         }
+
+        [HttpGet]
+        public IHttpActionResult Get()
+        {
+            SkillService skillService = CreateSkillService();
+            var skills = skillService.GetSkills();
+            return Ok(skills);
+        }
     }
 }
