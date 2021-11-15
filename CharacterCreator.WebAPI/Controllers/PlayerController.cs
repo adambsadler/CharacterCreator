@@ -1,4 +1,5 @@
 ﻿using CharacterCreator.Models.Character;
+using CharacterCreator.Models.Player;
 using CharacterCreator.Services;
 using Microsoft.AspNet.Identity;
 using System;
@@ -46,16 +47,29 @@ namespace CharacterCreator.WebAPI.Controllers
         }
 
         [HttpGet]
-        [Route("api/Note/me")]
-        public IHttpActionResult GetCurrentPlayer()
+        public IHttpActionResult Get(int id)
         {
             var service = CreatePlayerService();
-            var player = service.GetPlayerForCurrentUser();
+            var player = service.GetPlayerForId(id);
 
             if (player is null)
                 return NotFound();
 
             return Ok(player);
+        }
+
+        [HttpPut]
+        public IHttpActionResult Put(PlayerEdit player)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            var service = CreatePlayerService();
+
+            if (!service.UpdatePlayer(player))
+                return InternalServerError();
+
+            return Ok();
         }
     }
 }

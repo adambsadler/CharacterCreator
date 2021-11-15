@@ -10,7 +10,7 @@ namespace CharacterCreator.Data
     public class Player
     {
         [Key]
-        public Guid PlayerId { get; set; }
+        public int PlayerId { get; set; }
 
         [Required]
         [MinLength(2, ErrorMessage = "Error: skill name must be at least 2 characters long.")]
@@ -19,9 +19,7 @@ namespace CharacterCreator.Data
 
         public virtual List<Character> Characters { get; set; } = new List<Character>();
 
-        public Player(Guid playerId)
-        {
-            PlayerId = playerId;
-        }
+        [Required]
+        public Guid UserId { get; set; }
     }
 }

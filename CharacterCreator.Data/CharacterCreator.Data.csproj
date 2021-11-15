@@ -89,13 +89,9 @@
   <ItemGroup>
     <Compile Include="Character.cs" />
     <Compile Include="IdentityModels.cs" />
-    <Compile Include="Migrations\202111151759355_InitialCreate.cs" />
-    <Compile Include="Migrations\202111151759355_InitialCreate.designer.cs">
-      <DependentUpon>202111151759355_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202111151921568_PlayerInit.cs" />
-    <Compile Include="Migrations\202111151921568_PlayerInit.designer.cs">
-      <DependentUpon>202111151921568_PlayerInit.cs</DependentUpon>
+    <Compile Include="Migrations\202111152013302_reinit.cs" />
+    <Compile Include="Migrations\202111152013302_reinit.designer.cs">
+      <DependentUpon>202111152013302_reinit.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Player.cs" />
@@ -107,11 +103,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202111151759355_InitialCreate.resx">
-      <DependentUpon>202111151759355_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202111151921568_PlayerInit.resx">
-      <DependentUpon>202111151921568_PlayerInit.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202111152013302_reinit.resx">
+      <DependentUpon>202111152013302_reinit.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
