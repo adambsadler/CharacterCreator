@@ -54,5 +54,24 @@ namespace CharacterCreator.Services
                 return query.ToArray();
             }
         }
+
+        public SkillDetail GetSkillById(int id)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity =
+                    ctx
+                        .Skills
+                        .Single(e => e.SkillId == id);
+
+                return new SkillDetail
+                {
+                    SkillId = entity.SkillId,
+                    Name = entity.Name,
+                    Description = entity.Description,
+                    AbilityType = entity.AbilityType
+                };
+            }
+        }
     }
 }
