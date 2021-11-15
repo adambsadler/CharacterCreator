@@ -3,7 +3,7 @@
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class InitialCreate : DbMigration
+    public partial class reinit : DbMigration
     {
         public override void Up()
         {
@@ -21,8 +21,21 @@
                         Charisma = c.Int(nullable: false),
                         Race = c.String(nullable: false),
                         CharacterClass = c.String(nullable: false),
+                        Player_PlayerId = c.Int(),
                     })
-                .PrimaryKey(t => t.CharacterId);
+                .PrimaryKey(t => t.CharacterId)
+                .ForeignKey("dbo.Player", t => t.Player_PlayerId)
+                .Index(t => t.Player_PlayerId);
+            
+            CreateTable(
+                "dbo.Player",
+                c => new
+                    {
+                        PlayerId = c.Int(nullable: false, identity: true),
+                        Name = c.String(nullable: false, maxLength: 120),
+                        UserId = c.Guid(nullable: false),
+                    })
+                .PrimaryKey(t => t.PlayerId);
             
             CreateTable(
                 "dbo.IdentityRole",
@@ -113,16 +126,19 @@
             DropForeignKey("dbo.IdentityUserLogin", "ApplicationUser_Id", "dbo.ApplicationUser");
             DropForeignKey("dbo.IdentityUserClaim", "ApplicationUser_Id", "dbo.ApplicationUser");
             DropForeignKey("dbo.IdentityUserRole", "IdentityRole_Id", "dbo.IdentityRole");
+            DropForeignKey("dbo.Character", "Player_PlayerId", "dbo.Player");
             DropIndex("dbo.IdentityUserLogin", new[] { "ApplicationUser_Id" });
             DropIndex("dbo.IdentityUserClaim", new[] { "ApplicationUser_Id" });
             DropIndex("dbo.IdentityUserRole", new[] { "ApplicationUser_Id" });
             DropIndex("dbo.IdentityUserRole", new[] { "IdentityRole_Id" });
+            DropIndex("dbo.Character", new[] { "Player_PlayerId" });
             DropTable("dbo.IdentityUserLogin");
             DropTable("dbo.IdentityUserClaim");
             DropTable("dbo.ApplicationUser");
             DropTable("dbo.Skill");
             DropTable("dbo.IdentityUserRole");
             DropTable("dbo.IdentityRole");
+            DropTable("dbo.Player");
             DropTable("dbo.Character");
         }
     }

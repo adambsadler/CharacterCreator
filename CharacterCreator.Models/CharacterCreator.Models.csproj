@@ -59,6 +59,7 @@
   <ItemGroup>
     <Compile Include="Player\PlayerCreate.cs" />
     <Compile Include="Player\PlayerDetail.cs" />
+    <Compile Include="Player\PlayerEdit.cs" />
     <Compile Include="Player\PlayerListItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Skill\SkillCreate.cs" />

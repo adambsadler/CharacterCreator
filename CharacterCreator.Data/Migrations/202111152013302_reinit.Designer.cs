@@ -7,13 +7,13 @@ namespace CharacterCreator.Data.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.4")]
-    public sealed partial class InitialCreate : IMigrationMetadata
+    public sealed partial class reinit : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(InitialCreate));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(reinit));
         
         string IMigrationMetadata.Id
         {
-            get { return "202111151759355_InitialCreate"; }
+            get { return "202111152013302_reinit"; }
         }
         
         string IMigrationMetadata.Source

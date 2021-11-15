@@ -1,5 +1,6 @@
 ﻿using CharacterCreator.Data;
 using CharacterCreator.Models.Character;
+using CharacterCreator.Models.Player;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,19 +11,20 @@ namespace CharacterCreator.Services
 {
     public class PlayerService
     {
-        private readonly Guid _playerId;
+        private readonly Guid _userId;
 
-        public PlayerService(Guid playerId)
+        public PlayerService(Guid userId)
         {
-            _playerId = playerId;
+            _userId = userId;
         }
 
         public bool CreatePlayer(PlayerCreate model)
         {
             var entity =
-                new Player(_playerId)
+                new Player()
                 {
-                    Name = model.Name
+                    Name = model.Name,
+                    UserId = _userId
                 };
 
             using (var ctx = new ApplicationDbContext())
@@ -45,6 +47,7 @@ namespace CharacterCreator.Services
                             e =>
                                 new PlayerListItem
                                 {
+                                    PlayerId = e.PlayerId,
                                     Name = e.Name,
                                     NumberOfCharacters = e.Characters.Count
                                 });
@@ -58,7 +61,7 @@ namespace CharacterCreator.Services
             }
         }
 
-        public PlayerDetail GetPlayerForCurrentUser()
+        public PlayerDetail GetPlayerForId(int id)
         {
             using (var ctx = new ApplicationDbContext())
             {
@@ -67,10 +70,11 @@ namespace CharacterCreator.Services
                     var entity =
                     ctx
                         .Players
-                        .Single(e => e.PlayerId == _playerId);
+                        .Single(e => e.PlayerId == id);
 
                     return new PlayerDetail
                     {
+                        PlayerId = entity.PlayerId,
                         Name = entity.Name,
                         NumberOfCharacters = entity.Characters.Count
                     };
@@ -78,6 +82,28 @@ namespace CharacterCreator.Services
                 catch
                 {
                     return null;
+                }
+            }
+        }
+
+        public bool UpdatePlayer(PlayerEdit model)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                try
+                {
+                    var entity =
+                    ctx
+                        .Players
+                        .Single(e => e.PlayerId == model.PlayerId);
+
+                    entity.Name = model.Name;
+
+                    return ctx.SaveChanges() > 0;
+                }
+                catch
+                {
+                    return false;
                 }
             }
         }
