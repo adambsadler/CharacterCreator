@@ -33,6 +33,7 @@ namespace CharacterCreator.Data
             return new ApplicationDbContext();
         }
 
+        public DbSet<Player> Players { get; set; }
         public DbSet<Character> Character { get; set; }
         public DbSet<Skill> Skills { get; set; }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
