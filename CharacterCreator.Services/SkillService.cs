@@ -38,7 +38,9 @@ namespace CharacterCreator.Services
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var query =
+                try
+                {
+                    var query =
                     ctx
                         .Skills
                         .Select(
@@ -51,7 +53,12 @@ namespace CharacterCreator.Services
                                     AbilityType = e.AbilityType
                                 });
 
-                return query.ToArray();
+                    return query.ToArray();
+                }
+                catch
+                {
+                    return null;
+                }
             }
         }
 
@@ -59,18 +66,25 @@ namespace CharacterCreator.Services
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var entity =
+                try
+                {
+                    var entity =
                     ctx
                         .Skills
                         .Single(e => e.SkillId == id);
 
-                return new SkillDetail
+                    return new SkillDetail
+                    {
+                        SkillId = entity.SkillId,
+                        Name = entity.Name,
+                        Description = entity.Description,
+                        AbilityType = entity.AbilityType
+                    };
+                }
+                catch
                 {
-                    SkillId = entity.SkillId,
-                    Name = entity.Name,
-                    Description = entity.Description,
-                    AbilityType = entity.AbilityType
-                };
+                    return null;
+                }                
             }
         }
 
@@ -78,16 +92,44 @@ namespace CharacterCreator.Services
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var entity =
+                try
+                {
+                    var entity =
                     ctx
                         .Skills
                         .Single(e => e.SkillId == model.SkillId);
 
-                entity.Name = model.Name;
-                entity.Description = model.Description;
-                entity.AbilityType = model.AbilityType;
+                    entity.Name = model.Name;
+                    entity.Description = model.Description;
+                    entity.AbilityType = model.AbilityType;
 
-                return ctx.SaveChanges() > 0;
+                    return ctx.SaveChanges() > 0;
+                }
+                catch
+                {
+                    return false;
+                }                
+            }
+        }
+
+        public bool DeleteSkill(int id)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                try
+                {
+                    var entity =
+                    ctx
+                        .Skills
+                        .Single(e => e.SkillId == id);
+
+                    ctx.Skills.Remove(entity);
+
+                    return ctx.SaveChanges() > 0;
+                }catch
+                {
+                    return false;
+                }                
             }
         }
     }
