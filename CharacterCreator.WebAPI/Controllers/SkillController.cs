@@ -38,6 +38,10 @@ namespace CharacterCreator.WebAPI.Controllers
         {
             SkillService skillService = CreateSkillService();
             var skills = skillService.GetSkills();
+
+            if (skills is null)
+                return InternalServerError();
+
             return Ok(skills);
         }
 
@@ -46,6 +50,10 @@ namespace CharacterCreator.WebAPI.Controllers
         {
             SkillService skillService = CreateSkillService();
             var skill = skillService.GetSkillById(id);
+
+            if (skill is null)
+                return NotFound();
+
             return Ok(skill);
         }
 
@@ -58,6 +66,17 @@ namespace CharacterCreator.WebAPI.Controllers
             SkillService skillService = CreateSkillService();
 
             if (!skillService.UpdateSkill(skill))
+                return InternalServerError();
+
+            return Ok();
+        }
+
+        [HttpDelete]
+        public IHttpActionResult Delete(int id)
+        {
+            var service = CreateSkillService();
+
+            if (!service.DeleteSkill(id))
                 return InternalServerError();
 
             return Ok();
