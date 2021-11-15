@@ -31,5 +31,55 @@ namespace CharacterCreator.Services
                 return ctx.SaveChanges() > 0;
             }
         }
+
+        public IEnumerable<PlayerListItem> GetPlayers()
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                try
+                {
+                    var query =
+                    ctx
+                        .Players
+                        .Select(
+                            e =>
+                                new PlayerListItem
+                                {
+                                    Name = e.Name,
+                                    NumberOfCharacters = e.Characters.Count
+                                });
+
+                    return query.ToArray();
+                }
+                catch
+                {
+                    return null;
+                }
+            }
+        }
+
+        public PlayerDetail GetPlayerForCurrentUser()
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                try
+                {
+                    var entity =
+                    ctx
+                        .Players
+                        .Single(e => e.PlayerId == _playerId);
+
+                    return new PlayerDetail
+                    {
+                        Name = entity.Name,
+                        NumberOfCharacters = entity.Characters.Count
+                    };
+                }
+                catch
+                {
+                    return null;
+                }
+            }
+        }
     }
 }
