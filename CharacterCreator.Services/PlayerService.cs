@@ -107,5 +107,27 @@ namespace CharacterCreator.Services
                 }
             }
         }
+
+        public bool DeletePlayer(int id)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                try
+                {
+                    var entity =
+                    ctx
+                        .Players
+                        .Single(e => e.PlayerId == id);
+
+                    ctx.Players.Remove(entity);
+
+                    return ctx.SaveChanges() > 0;
+                }
+                catch
+                {
+                    return false;
+                }
+            }
+        }
     }
 }

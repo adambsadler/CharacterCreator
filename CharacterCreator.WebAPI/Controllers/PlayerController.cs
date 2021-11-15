@@ -71,5 +71,16 @@ namespace CharacterCreator.WebAPI.Controllers
 
             return Ok();
         }
+
+        [HttpDelete]
+        public IHttpActionResult Delete(int id)
+        {
+            var service = CreatePlayerService();
+
+            if (!service.DeletePlayer(id))
+                return InternalServerError();
+
+            return Ok();
+        }
     }
 }
