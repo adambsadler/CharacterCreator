@@ -32,5 +32,30 @@ namespace CharacterCreator.WebAPI.Controllers
 
             return Ok();
         }
+
+        [HttpGet]
+        public IHttpActionResult Get()
+        {
+            var service = CreatePlayerService();
+            var players = service.GetPlayers();
+
+            if (players is null)
+                return InternalServerError();
+
+            return Ok(players);
+        }
+
+        [HttpGet]
+        [Route("api/Note/me")]
+        public IHttpActionResult GetCurrentPlayer()
+        {
+            var service = CreatePlayerService();
+            var player = service.GetPlayerForCurrentUser();
+
+            if (player is null)
+                return NotFound();
+
+            return Ok(player);
+        }
     }
 }
