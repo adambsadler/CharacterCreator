@@ -34,6 +34,7 @@ namespace CharacterCreator.Data
         }
 
         public DbSet<Character> Character { get; set; }
+        public DbSet<Skill> Skills { get; set; }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder
