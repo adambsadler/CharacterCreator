@@ -73,5 +73,22 @@ namespace CharacterCreator.Services
                 };
             }
         }
+
+        public bool UpdateSkill(SkillEdit model)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity =
+                    ctx
+                        .Skills
+                        .Single(e => e.SkillId == model.SkillId);
+
+                entity.Name = model.Name;
+                entity.Description = model.Description;
+                entity.AbilityType = model.AbilityType;
+
+                return ctx.SaveChanges() > 0;
+            }
+        }
     }
 }

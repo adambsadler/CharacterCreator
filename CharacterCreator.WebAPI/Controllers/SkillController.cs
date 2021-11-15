@@ -48,5 +48,19 @@ namespace CharacterCreator.WebAPI.Controllers
             var skill = skillService.GetSkillById(id);
             return Ok(skill);
         }
+
+        [HttpPut]
+        public IHttpActionResult Put(SkillEdit skill)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            SkillService skillService = CreateSkillService();
+
+            if (!skillService.UpdateSkill(skill))
+                return InternalServerError();
+
+            return Ok();
+        }
     }
 }
