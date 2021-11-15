@@ -33,5 +33,26 @@ namespace CharacterCreator.Services
                 return ctx.SaveChanges() > 0;
             }
         }
+
+        public IEnumerable<SkillListItem> GetSkills()
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var query =
+                    ctx
+                        .Skills
+                        .Select(
+                            e =>
+                                new SkillListItem
+                                {
+                                    SkillId = e.SkillId,
+                                    Name = e.Name,
+                                    Description = e.Description,
+                                    AbilityType = e.AbilityType
+                                });
+
+                return query.ToArray();
+            }
+        }
     }
 }
