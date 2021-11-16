@@ -57,6 +57,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Character\CharacterCreate.cs" />
+    <Compile Include="Character\CharacterDetail.cs" />
+    <Compile Include="Character\CharacterEdit.cs" />
+    <Compile Include="Character\CharacterListItem.cs" />
     <Compile Include="Player\PlayerCreate.cs" />
     <Compile Include="Player\PlayerDetail.cs" />
     <Compile Include="Player\PlayerEdit.cs" />
@@ -77,6 +81,7 @@
       <Name>CharacterCreator.Data</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

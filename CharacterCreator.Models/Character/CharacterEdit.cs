@@ -5,17 +5,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CharacterCreator.Data
+namespace CharacterCreator.Models.Character
 {
-    public class Character
+    public class CharacterEdit
     {
-        [Key]
+        [Required]
         public int CharacterId { get; set; }
         [Required]
         [Range(2, 50, ErrorMessage = "Character's name must be between 2 and 50 characters long.")]
         public string Name { get; set; }
         [Required]
-        [Range(8,15, ErrorMessage ="Please enter a number between 8 and 15.")]
+        [Range(8, 15, ErrorMessage = "Please enter a number between 8 and 15.")]
         public int Strength { get; set; }
         [Required]
         [Range(8, 15, ErrorMessage = "Please enter a number between 8 and 15.")]
