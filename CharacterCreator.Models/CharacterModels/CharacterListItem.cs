@@ -1,35 +1,36 @@
-﻿using System;
+﻿using CharacterCreator.Data;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CharacterCreator.Models.Character
+namespace CharacterCreator.Models.CharacterModels
 {
-    public class CharacterDetail
+    public class CharacterListItem
     {
         public int CharacterId { get; set; }
-        
+
         public string Name { get; set; }
-        
+
         public int Strength { get; set; }
-        
+
         public int Dexterity { get; set; }
-        
+
         public int Constitution { get; set; }
-        
+
         public int Intelligence { get; set; }
-        
+
         public int Wisdom { get; set; }
-        
+
         public int Charisma { get; set; }
-        
+
         public string Race { get; set; }
-        
+
         public string CharacterClass { get; set; }
 
-        // Add Background
+        public virtual Background Background { get; set; }
 
-        // Add Skill Proficiencies
+        public virtual List<Skill> SkillProficiencies { get; set; }
     }
 }

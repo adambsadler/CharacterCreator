@@ -1,5 +1,5 @@
 ﻿using CharacterCreator.Data;
-using CharacterCreator.Models.Skill;
+using CharacterCreator.Models.SkillModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;

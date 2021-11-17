@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CharacterCreator.Models.Character
+namespace CharacterCreator.Models.PlayerModels
 {
     public class PlayerDetail
     {

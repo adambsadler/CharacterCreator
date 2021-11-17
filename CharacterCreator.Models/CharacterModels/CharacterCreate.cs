@@ -1,16 +1,19 @@
-﻿using System;
+﻿using CharacterCreator.Data;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CharacterCreator.Models.Character
+namespace CharacterCreator.Models.CharacterModels
 {
-    public class CharacterEdit
+    public class CharacterCreate
     {
-        [Required]
-        public int CharacterId { get; set; }
+        [Required, ForeignKey(nameof(Player))]
+        public int PlayerId { get; set; }
+        public virtual Player Player { get; set; }
         [Required]
         [Range(2, 50, ErrorMessage = "Character's name must be between 2 and 50 characters long.")]
         public string Name { get; set; }
@@ -36,9 +39,10 @@ namespace CharacterCreator.Models.Character
         public string Race { get; set; }
         [Required]
         public string CharacterClass { get; set; }
-
-        // Add Background
-
-        // Add Skill Proficiencies
+        [Required, ForeignKey(nameof(Background))]
+        public int BackgroundId { get; set; }
+        public virtual Background Background { get; set; }
+        [Required]
+        public virtual List<Skill> SkillProficiencies { get; set; }
     }
 }

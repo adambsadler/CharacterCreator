@@ -1,4 +1,4 @@
-﻿using CharacterCreator.Models.Skill;
+﻿using CharacterCreator.Models.SkillModels;
 using CharacterCreator.Services;
 using Microsoft.AspNet.Identity;
 using System;

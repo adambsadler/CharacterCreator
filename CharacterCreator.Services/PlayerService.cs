@@ -1,5 +1,5 @@
 ﻿using CharacterCreator.Data;
-using CharacterCreator.Models.Character;
+using CharacterCreator.Models.CharacterModels;
 using CharacterCreator.Models.Player;
 using System;
 using System.Collections.Generic;
