@@ -1,4 +1,4 @@
-﻿using CharacterCreator.Models.Character;
+﻿using CharacterCreator.Models.CharacterModels;
 using CharacterCreator.Models.Player;
 using CharacterCreator.Services;
 using Microsoft.AspNet.Identity;

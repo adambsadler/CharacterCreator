@@ -1,5 +1,5 @@
 ﻿using CharacterCreator.Data;
-using CharacterCreator.Models.Character;
+using CharacterCreator.Models.CharacterModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,7 +30,9 @@ namespace CharacterCreator.Services
                     Wisdom = model.Wisdom,
                     Charisma = model.Charisma,
                     Race = model.Race,
-                    CharacterClass = model.CharacterClass
+                    CharacterClass = model.CharacterClass,
+                    Background = model.Background,
+                    SkillProficiencies = model.SkillProficiencies
                 };
 
             using (var ctx = new ApplicationDbContext())
@@ -62,7 +64,9 @@ namespace CharacterCreator.Services
                                     Wisdom = e.Wisdom,
                                     Charisma = e.Charisma,
                                     Race = e.Race,
-                                    CharacterClass = e.CharacterClass
+                                    CharacterClass = e.CharacterClass,
+                                    Background = e.Background,
+                                    SkillProficiencies = e.SkillProficiencies
                                 });
 
                     return query.ToArray();
@@ -96,7 +100,9 @@ namespace CharacterCreator.Services
                         Wisdom = entity.Wisdom,
                         Charisma = entity.Charisma,
                         Race = entity.Race,
-                        CharacterClass = entity.CharacterClass
+                        CharacterClass = entity.CharacterClass,
+                        Background = entity.Background,
+                        SkillProficiencies = entity.SkillProficiencies
                     };
                 }
                 catch
@@ -126,6 +132,8 @@ namespace CharacterCreator.Services
                     entity.Charisma = model.Charisma;
                     entity.Race = model.Race;
                     entity.CharacterClass = model.CharacterClass;
+                    entity.Background = model.Background;
+                    entity.SkillProficiencies = entity.SkillProficiencies;
 
                     return ctx.SaveChanges() > 0;
                 }

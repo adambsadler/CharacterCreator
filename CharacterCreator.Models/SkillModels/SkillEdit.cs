@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CharacterCreator.Models.Skill
+namespace CharacterCreator.Models.SkillModels
 {
     public class SkillEdit
     {

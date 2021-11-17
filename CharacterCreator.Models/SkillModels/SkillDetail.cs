@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CharacterCreator.Models.Skill
+namespace CharacterCreator.Models.SkillModels
 {
-    public class SkillListItem
+    public class SkillDetail
     {
         public int SkillId { get; set; }
         public string Name { get; set; }

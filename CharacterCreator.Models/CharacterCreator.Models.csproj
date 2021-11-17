@@ -57,19 +57,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Character\CharacterCreate.cs" />
-    <Compile Include="Character\CharacterDetail.cs" />
-    <Compile Include="Character\CharacterEdit.cs" />
-    <Compile Include="Character\CharacterListItem.cs" />
-    <Compile Include="Player\PlayerCreate.cs" />
-    <Compile Include="Player\PlayerDetail.cs" />
-    <Compile Include="Player\PlayerEdit.cs" />
-    <Compile Include="Player\PlayerListItem.cs" />
+    <Compile Include="CharacterModels\CharacterCreate.cs" />
+    <Compile Include="CharacterModels\CharacterDetail.cs" />
+    <Compile Include="CharacterModels\CharacterEdit.cs" />
+    <Compile Include="CharacterModels\CharacterListItem.cs" />
+    <Compile Include="PlayerModels\PlayerCreate.cs" />
+    <Compile Include="PlayerModels\PlayerDetail.cs" />
+    <Compile Include="PlayerModels\PlayerEdit.cs" />
+    <Compile Include="PlayerModels\PlayerListItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Skill\SkillCreate.cs" />
-    <Compile Include="Skill\SkillDetail.cs" />
-    <Compile Include="Skill\SkillEdit.cs" />
-    <Compile Include="Skill\SkillListItem.cs" />
+    <Compile Include="SkillModels\SkillCreate.cs" />
+    <Compile Include="SkillModels\SkillDetail.cs" />
+    <Compile Include="SkillModels\SkillEdit.cs" />
+    <Compile Include="SkillModels\SkillListItem.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
