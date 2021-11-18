@@ -57,6 +57,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BackgroundModels\BackgroundCreate.cs" />
+    <Compile Include="BackgroundModels\BackgroundDetail.cs" />
+    <Compile Include="BackgroundModels\BackgroundEdit.cs" />
+    <Compile Include="BackgroundModels\BackgroundListItem.cs" />
     <Compile Include="CharacterModels\CharacterCreate.cs" />
     <Compile Include="CharacterModels\CharacterDetail.cs" />
     <Compile Include="CharacterModels\CharacterEdit.cs" />

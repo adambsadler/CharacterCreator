@@ -5,12 +5,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CharacterCreator.Data
+namespace CharacterCreator.Models.BackgroundModels
 {
-    public class Background
+    public class BackgroundCreate
     {
-        [Key]
-        public int BackgroundId { get; set; }
         [Required]
         [Range(2, 50, ErrorMessage = "Background name must be between 2 and 50 characters long.")]
         public string Name { get; set; }

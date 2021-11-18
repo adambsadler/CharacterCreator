@@ -1,7 +1,5 @@
 ﻿using CharacterCreator.Data;
-using CharacterCreator.Models.CharacterModels;
-using CharacterCreator.Models.SkillModels;
-using CharacterCreator.Models.PlayerModels;
+using CharacterCreator.Models.BackgroundModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,32 +8,26 @@ using System.Threading.Tasks;
 
 namespace CharacterCreator.Services
 {
-    public class PlayerService
+    public class BackgroundService
     {
-        private readonly Guid _userId;
-
-        public PlayerService(Guid userId)
-        {
-            _userId = userId;
-        }
-
-        public bool CreatePlayer(PlayerCreate model)
+        public bool CreateBackground(BackgroundCreate model)
         {
             var entity =
-                new Player()
+                new Background()
                 {
                     Name = model.Name,
-                    UserId = _userId
+                    Description = model.Description,
+                    Feature = model.Feature
                 };
 
             using (var ctx = new ApplicationDbContext())
             {
-                ctx.Players.Add(entity);
+                ctx.Backgrounds.Add(entity);
                 return ctx.SaveChanges() > 0;
             }
         }
 
-        public IEnumerable<PlayerListItem> GetPlayers()
+        public IEnumerable<BackgroundListItem> GetBackgrounds()
         {
             using (var ctx = new ApplicationDbContext())
             {
@@ -43,14 +35,15 @@ namespace CharacterCreator.Services
                 {
                     var query =
                     ctx
-                        .Players
+                        .Backgrounds
                         .Select(
                             e =>
-                                new PlayerListItem
+                                new BackgroundListItem
                                 {
-                                    PlayerId = e.PlayerId,
+                                    BackgroundId = e.BackgroundId,
                                     Name = e.Name,
-                                    NumberOfCharacters = e.Characters.Count
+                                    Description = e.Description,
+                                    Feature = e.Feature
                                 });
 
                     return query.ToArray();
@@ -62,7 +55,7 @@ namespace CharacterCreator.Services
             }
         }
 
-        public PlayerDetail GetPlayerForId(int id)
+        public BackgroundDetail GetBackgroundById(int id)
         {
             using (var ctx = new ApplicationDbContext())
             {
@@ -70,14 +63,15 @@ namespace CharacterCreator.Services
                 {
                     var entity =
                     ctx
-                        .Players
-                        .Single(e => e.PlayerId == id);
+                        .Backgrounds
+                        .Single(e => e.BackgroundId == id);
 
-                    return new PlayerDetail
+                    return new BackgroundDetail
                     {
-                        PlayerId = entity.PlayerId,
+                        BackgroundId = entity.BackgroundId,
                         Name = entity.Name,
-                        NumberOfCharacters = entity.Characters.Count
+                        Description = entity.Description,
+                        Feature = entity.Feature
                     };
                 }
                 catch
@@ -87,7 +81,7 @@ namespace CharacterCreator.Services
             }
         }
 
-        public bool UpdatePlayer(PlayerEdit model)
+        public bool UpdateBackground(BackgroundEdit model)
         {
             using (var ctx = new ApplicationDbContext())
             {
@@ -95,10 +89,12 @@ namespace CharacterCreator.Services
                 {
                     var entity =
                     ctx
-                        .Players
-                        .Single(e => e.PlayerId == model.PlayerId);
+                        .Backgrounds
+                        .Single(e => e.BackgroundId == model.BackgroundId);
 
                     entity.Name = model.Name;
+                    entity.Description = model.Description;
+                    entity.Feature = model.Feature;
 
                     return ctx.SaveChanges() > 0;
                 }
@@ -109,7 +105,7 @@ namespace CharacterCreator.Services
             }
         }
 
-        public bool DeletePlayer(int id)
+        public bool DeleteBackground(int id)
         {
             using (var ctx = new ApplicationDbContext())
             {
@@ -117,10 +113,10 @@ namespace CharacterCreator.Services
                 {
                     var entity =
                     ctx
-                        .Players
-                        .Single(e => e.PlayerId == id);
+                        .Backgrounds
+                        .Single(e => e.BackgroundId == id);
 
-                    ctx.Players.Remove(entity);
+                    ctx.Backgrounds.Remove(entity);
 
                     return ctx.SaveChanges() > 0;
                 }
