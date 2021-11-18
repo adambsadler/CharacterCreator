@@ -30,12 +30,15 @@ namespace CharacterCreator.ConsoleProgram
                 switch (response)
                 {
                     case "1":
-                        //if(AskForLogin())
+                        if (AskForLogin(true))
+                            break;
                             //GoToNextPage("Player");
                             //_consoleUI_Party.Menu_CreateParty();
                             //GoBack();
                         break;
                     case "2":
+                        if (AskForLogin(false))
+                            break;
                         //GoToNextPage("View Existing Parties");
                         //_consoleUI_Party.Menu_ViewOrUpdate_All();
                         //GoBack();
@@ -48,8 +51,6 @@ namespace CharacterCreator.ConsoleProgram
                         PrintErrorMessageForInput(response);
                         break;
                 }
-
-                Console.ReadLine();
             }
         }
 
@@ -64,7 +65,7 @@ namespace CharacterCreator.ConsoleProgram
                 return false;
             }
 
-            Console.WriteLine(isExistingUser ? "\n\nPlease enter your password:" : "\n\nPlease enter a new password:");
+            Console.WriteLine(isExistingUser ? "\nPlease enter your password:" : "\nPlease enter a new password:");
             string password = Console.ReadLine();
 
             if (password is null || password == "")
@@ -75,30 +76,39 @@ namespace CharacterCreator.ConsoleProgram
 
             if(!isExistingUser)
             {
-                Console.WriteLine("\n\nPlease confirm your password:");
-                string passwordCheck = Console.ReadLine();
+                Console.WriteLine("\nPlease confirm your password:");
+                string confirmPassword = Console.ReadLine();
 
-                if (passwordCheck is null || passwordCheck == "")
+                if (confirmPassword is null || confirmPassword == "")
                 {
                     PrintErrorMessageForInput($"This is not a valid password. Press any key to return to the main menu.");
                     return false;
                 }
-                else if(password != passwordCheck)
+                else if(password != confirmPassword)
                 {
                     PrintErrorMessageForInput($"These password do not match. Press any key to return to the main menu.");
                     return false;
                 }
+
+                // Try to register new profile
+                return AttemptToRegisterUser(email, password, confirmPassword);
             }
 
             // Try to login to endpoint
-            if (!AttemptLogin(email, password))
-                return false;
-
-            return true;
+            return (!AttemptLogin(email, password));
         }
 
         public bool AttemptLogin(string email, string password)
         {
+            Console.WriteLine("\nAttempting to login to existing user profile.");
+            Console.ReadLine();
+            return true;
+        }
+
+        public bool AttemptToRegisterUser(string email, string password, string confirmPassword)
+        {
+            Console.WriteLine("\nAttempting to create new user profile.");
+            Console.ReadLine();
             return true;
         }
     }
