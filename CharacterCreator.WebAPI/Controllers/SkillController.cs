@@ -15,7 +15,7 @@ namespace CharacterCreator.WebAPI.Controllers
         private SkillService CreateSkillService()
         {
             var playerId = Guid.Parse(User.Identity.GetUserId());
-            var skillService = new SkillService(playerId);
+            var skillService = new SkillService();
             return skillService;
         }
 
