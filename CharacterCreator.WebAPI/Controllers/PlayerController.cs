@@ -1,5 +1,5 @@
 ﻿using CharacterCreator.Models.CharacterModels;
-using CharacterCreator.Models.Player;
+using CharacterCreator.Models.PlayerModels;
 using CharacterCreator.Services;
 using Microsoft.AspNet.Identity;
 using System;

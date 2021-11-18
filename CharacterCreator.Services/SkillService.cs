@@ -10,12 +10,6 @@ namespace CharacterCreator.Services
 {
     public class SkillService
     {
-        private readonly Guid _playerId;
-
-        public SkillService(Guid playerId)
-        {
-            _playerId = playerId;
-        }
 
         public bool CreateSkill(SkillCreate model)
         {
