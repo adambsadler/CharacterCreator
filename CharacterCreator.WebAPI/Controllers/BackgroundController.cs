@@ -14,7 +14,6 @@ namespace CharacterCreator.WebAPI.Controllers
     {
         private BackgroundService CreateBackgroundService()
         {
-            var playerId = Guid.Parse(User.Identity.GetUserId());
             var backgroundService = new BackgroundService();
             return backgroundService;
         }

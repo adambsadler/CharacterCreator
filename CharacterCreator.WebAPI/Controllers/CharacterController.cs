@@ -14,7 +14,6 @@ namespace CharacterCreator.WebAPI.Controllers
     {
         private CharacterService CreateCharacterService()
         {
-            var playerId = Guid.Parse(User.Identity.GetUserId());
             var characterService = new CharacterService();
             return characterService;
         }
