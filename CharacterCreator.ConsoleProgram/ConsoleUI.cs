@@ -1,13 +1,18 @@
-﻿using System;
+﻿using CharacterCreator.WebAPI.Controllers;
+using CharacterCreator.WebAPI.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Http.Results;
 
 namespace CharacterCreator.ConsoleProgram
 {
     public class ConsoleUI : FormattingHelpers
     {
+        AccountController _accountController = new AccountController();
+
         public void Run()
         {
             Run_MainMenu();
@@ -107,9 +112,30 @@ namespace CharacterCreator.ConsoleProgram
 
         public bool AttemptToRegisterUser(string email, string password, string confirmPassword)
         {
-            Console.WriteLine("\nAttempting to create new user profile.");
-            Console.ReadLine();
-            return true;
+            RegisterBindingModel model = new RegisterBindingModel();
+            model.Email = email;
+            model.Password = password;
+            model.ConfirmPassword = confirmPassword;
+
+            //var result = _accountController.Register(model);
+            //var result2 = _accountController.Register(model);
+
+            //if(result.GetType() == typeof(BadRequestResult))
+            //{
+            //    PrintErrorMessage("Bad Request Error: " + result.Result.ToString());
+
+            //}else if(result.GetType() == typeof(InternalServerErrorResult))
+            //{
+            //    PrintErrorMessage("Internal Server Error: " + result.Result.ToString());
+            //}
+            //else if(result.GetType() == typeof(OkResult))
+            //{
+            //    return true;
+            //}
+
+            //// Something else happened
+            //PrintErrorMessage("Error: " + result.Result.ToString());
+            return false;
         }
     }
 }
