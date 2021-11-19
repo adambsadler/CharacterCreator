@@ -3,16 +3,28 @@
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class reinit : DbMigration
+    public partial class Init : DbMigration
     {
         public override void Up()
         {
+            CreateTable(
+                "dbo.Background",
+                c => new
+                    {
+                        BackgroundId = c.Int(nullable: false, identity: true),
+                        Name = c.String(nullable: false, maxLength: 50),
+                        Description = c.String(nullable: false, maxLength: 500),
+                        Feature = c.String(nullable: false, maxLength: 100),
+                    })
+                .PrimaryKey(t => t.BackgroundId);
+            
             CreateTable(
                 "dbo.Character",
                 c => new
                     {
                         CharacterId = c.Int(nullable: false, identity: true),
-                        Name = c.String(nullable: false),
+                        Name = c.String(nullable: false, maxLength: 50),
+                        PlayerId = c.Int(nullable: false),
                         Strength = c.Int(nullable: false),
                         Dexterity = c.Int(nullable: false),
                         Constitution = c.Int(nullable: false),
@@ -21,11 +33,13 @@
                         Charisma = c.Int(nullable: false),
                         Race = c.String(nullable: false),
                         CharacterClass = c.String(nullable: false),
-                        Player_PlayerId = c.Int(),
+                        BackgroundId = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.CharacterId)
-                .ForeignKey("dbo.Player", t => t.Player_PlayerId)
-                .Index(t => t.Player_PlayerId);
+                .ForeignKey("dbo.Background", t => t.BackgroundId, cascadeDelete: true)
+                .ForeignKey("dbo.Player", t => t.PlayerId, cascadeDelete: true)
+                .Index(t => t.PlayerId)
+                .Index(t => t.BackgroundId);
             
             CreateTable(
                 "dbo.Player",
@@ -36,6 +50,20 @@
                         UserId = c.Guid(nullable: false),
                     })
                 .PrimaryKey(t => t.PlayerId);
+            
+            CreateTable(
+                "dbo.Skill",
+                c => new
+                    {
+                        SkillId = c.Int(nullable: false, identity: true),
+                        Name = c.String(nullable: false, maxLength: 240),
+                        Description = c.String(nullable: false, maxLength: 500),
+                        AbilityType = c.String(),
+                        Character_CharacterId = c.Int(),
+                    })
+                .PrimaryKey(t => t.SkillId)
+                .ForeignKey("dbo.Character", t => t.Character_CharacterId)
+                .Index(t => t.Character_CharacterId);
             
             CreateTable(
                 "dbo.IdentityRole",
@@ -60,17 +88,6 @@
                 .ForeignKey("dbo.ApplicationUser", t => t.ApplicationUser_Id)
                 .Index(t => t.IdentityRole_Id)
                 .Index(t => t.ApplicationUser_Id);
-            
-            CreateTable(
-                "dbo.Skill",
-                c => new
-                    {
-                        SkillId = c.Int(nullable: false, identity: true),
-                        Name = c.String(nullable: false, maxLength: 240),
-                        Description = c.String(nullable: false, maxLength: 500),
-                        AbilityType = c.String(),
-                    })
-                .PrimaryKey(t => t.SkillId);
             
             CreateTable(
                 "dbo.ApplicationUser",
@@ -126,20 +143,25 @@
             DropForeignKey("dbo.IdentityUserLogin", "ApplicationUser_Id", "dbo.ApplicationUser");
             DropForeignKey("dbo.IdentityUserClaim", "ApplicationUser_Id", "dbo.ApplicationUser");
             DropForeignKey("dbo.IdentityUserRole", "IdentityRole_Id", "dbo.IdentityRole");
-            DropForeignKey("dbo.Character", "Player_PlayerId", "dbo.Player");
+            DropForeignKey("dbo.Skill", "Character_CharacterId", "dbo.Character");
+            DropForeignKey("dbo.Character", "PlayerId", "dbo.Player");
+            DropForeignKey("dbo.Character", "BackgroundId", "dbo.Background");
             DropIndex("dbo.IdentityUserLogin", new[] { "ApplicationUser_Id" });
             DropIndex("dbo.IdentityUserClaim", new[] { "ApplicationUser_Id" });
             DropIndex("dbo.IdentityUserRole", new[] { "ApplicationUser_Id" });
             DropIndex("dbo.IdentityUserRole", new[] { "IdentityRole_Id" });
-            DropIndex("dbo.Character", new[] { "Player_PlayerId" });
+            DropIndex("dbo.Skill", new[] { "Character_CharacterId" });
+            DropIndex("dbo.Character", new[] { "BackgroundId" });
+            DropIndex("dbo.Character", new[] { "PlayerId" });
             DropTable("dbo.IdentityUserLogin");
             DropTable("dbo.IdentityUserClaim");
             DropTable("dbo.ApplicationUser");
-            DropTable("dbo.Skill");
             DropTable("dbo.IdentityUserRole");
             DropTable("dbo.IdentityRole");
+            DropTable("dbo.Skill");
             DropTable("dbo.Player");
             DropTable("dbo.Character");
+            DropTable("dbo.Background");
         }
     }
 }

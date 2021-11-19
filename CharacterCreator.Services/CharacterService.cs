@@ -25,7 +25,8 @@ namespace CharacterCreator.Services
                     Charisma = model.Charisma,
                     Race = model.Race,
                     CharacterClass = model.CharacterClass,
-                    Background = model.Background,
+                    BackgroundId = model.BackgroundId,
+                    PlayerId = model.PlayerId,
                     SkillProficiencies = model.SkillProficiencies
                 };
 
