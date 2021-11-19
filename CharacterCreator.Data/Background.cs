@@ -12,13 +12,16 @@ namespace CharacterCreator.Data
         [Key]
         public int BackgroundId { get; set; }
         [Required]
-        [Range(2, 50, ErrorMessage = "Background name must be between 2 and 50 characters long.")]
+        [MinLength(2, ErrorMessage = "Error: background name must be at least 2 characters long.")]
+        [MaxLength(50, ErrorMessage = "Error: background name must be 50 characters or less.")]
         public string Name { get; set; }
         [Required]
-        [Range(2, 500, ErrorMessage = "Background description must be between 2 and 500 characters long.")]
+        [MinLength(2, ErrorMessage = "Error: background description must be at least 2 characters long.")]
+        [MaxLength(500, ErrorMessage = "Error: background description must be 500 characters or less.")]
         public string Description { get; set; }
         [Required]
-        [Range(2, 100, ErrorMessage = "Background feature must be between 2 and 100 characters long.")]
+        [MinLength(2, ErrorMessage = "Error: background feature must be at least 2 characters long.")]
+        [MaxLength(100, ErrorMessage = "Error: background feature must be 100 characters or less.")]
         public string Feature { get; set; }
     }
 }
