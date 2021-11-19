@@ -3,7 +3,7 @@
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class InitialMigration : DbMigration
+    public partial class update : DbMigration
     {
         public override void Up()
         {
@@ -15,15 +15,14 @@
                 c => new
                     {
                         BackgroundId = c.Int(nullable: false, identity: true),
-                        Name = c.String(nullable: false, maxLength: 50),
-                        Description = c.String(nullable: false, maxLength: 500),
-                        Feature = c.String(nullable: false, maxLength: 100),
+                        Name = c.String(nullable: false),
+                        Description = c.String(nullable: false),
+                        Feature = c.String(nullable: false),
                     })
                 .PrimaryKey(t => t.BackgroundId);
             
             AddColumn("dbo.Character", "BackgroundId", c => c.Int(nullable: false));
             AddColumn("dbo.Skill", "Character_CharacterId", c => c.Int());
-            AlterColumn("dbo.Character", "Name", c => c.String(nullable: false, maxLength: 50));
             AlterColumn("dbo.Character", "PlayerId", c => c.Int(nullable: false));
             CreateIndex("dbo.Character", "PlayerId");
             CreateIndex("dbo.Character", "BackgroundId");
@@ -42,7 +41,6 @@
             DropIndex("dbo.Character", new[] { "BackgroundId" });
             DropIndex("dbo.Character", new[] { "PlayerId" });
             AlterColumn("dbo.Character", "PlayerId", c => c.Int());
-            AlterColumn("dbo.Character", "Name", c => c.String(nullable: false));
             DropColumn("dbo.Skill", "Character_CharacterId");
             DropColumn("dbo.Character", "BackgroundId");
             DropTable("dbo.Background");
