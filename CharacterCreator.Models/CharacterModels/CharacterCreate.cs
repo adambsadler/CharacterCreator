@@ -15,7 +15,8 @@ namespace CharacterCreator.Models.CharacterModels
         public int PlayerId { get; set; }
         public virtual Player Player { get; set; }
         [Required]
-        [Range(2, 50, ErrorMessage = "Character's name must be between 2 and 50 characters long.")]
+        [MinLength(2, ErrorMessage = "Error: character's name must be at least 2 characters long.")]
+        [MaxLength(50, ErrorMessage = "Error: character's name must be 50 characters or less.")]
         public string Name { get; set; }
         [Required]
         [Range(8, 15, ErrorMessage = "Please enter a number between 8 and 15.")]

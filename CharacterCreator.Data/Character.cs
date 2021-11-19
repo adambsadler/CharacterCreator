@@ -13,7 +13,8 @@ namespace CharacterCreator.Data
         [Key]
         public int CharacterId { get; set; }
         [Required]
-        [Range(2, 50, ErrorMessage = "Character's name must be between 2 and 50 characters long.")]
+        [MinLength(2, ErrorMessage = "Error: character's name must be at least 2 characters long.")]
+        [MaxLength(50, ErrorMessage = "Error: character's name must be 50 characters or less.")]
         public string Name { get; set; }
         [Required, ForeignKey(nameof(Player))]
         public int PlayerId { get; set; }
