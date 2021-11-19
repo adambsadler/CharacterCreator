@@ -56,6 +56,12 @@ namespace CharacterCreator.ConsoleProgram
             Console.ReadLine();
         }
 
+        public void PrintErrorMessage(string error)
+        {
+            Console.WriteLine($"\n{error}");
+            Console.ReadLine();
+        }
+
         public bool InterpretYesNoInput(string input)
         {
             if (input is null || input == "")
