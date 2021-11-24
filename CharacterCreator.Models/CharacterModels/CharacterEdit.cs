@@ -42,7 +42,7 @@ namespace CharacterCreator.Models.CharacterModels
         [Required, ForeignKey(nameof(Background))]
         public int BackgroundId { get; set; }
         public virtual Background Background { get; set; }
-        [Required]
+        //[Required]
         public virtual List<Skill> SkillProficiencies { get; set; }
     }
 }
