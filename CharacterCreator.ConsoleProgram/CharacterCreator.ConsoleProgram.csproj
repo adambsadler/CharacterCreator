@@ -53,6 +53,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ConsoleUI.cs" />
+    <Compile Include="ConsoleUI_MainMenu.cs" />
+    <Compile Include="ControllerClasses\LocalPlayerController.cs" />
     <Compile Include="ControllerClasses\LoginController.cs" />
     <Compile Include="FormattingHelpers.cs" />
     <Compile Include="ModelClasses\TokenResponse.cs" />
@@ -64,6 +66,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CharacterCreator.Data\CharacterCreator.Data.csproj">
+      <Project>{8DB477DB-37F3-419A-AEC7-1371B3B9DCC7}</Project>
+      <Name>CharacterCreator.Data</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CharacterCreator.Models\CharacterCreator.Models.csproj">
       <Project>{CBCD0973-11CD-4D06-8180-000231EFFAA8}</Project>
       <Name>CharacterCreator.Models</Name>
