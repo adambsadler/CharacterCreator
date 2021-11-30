@@ -53,8 +53,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ConsoleUI.cs" />
+    <Compile Include="ConsoleUI_BackgroundList.cs" />
     <Compile Include="ConsoleUI_MainMenu.cs" />
+    <Compile Include="ConsoleUI_SkillList.cs" />
+    <Compile Include="ControllerClasses\LocalBackgroundController.cs" />
+    <Compile Include="ControllerClasses\LocalCharacterController.cs" />
     <Compile Include="ControllerClasses\LocalPlayerController.cs" />
+    <Compile Include="ControllerClasses\LocalSkillController.cs" />
     <Compile Include="ControllerClasses\LoginController.cs" />
     <Compile Include="FormattingHelpers.cs" />
     <Compile Include="ModelClasses\TokenResponse.cs" />

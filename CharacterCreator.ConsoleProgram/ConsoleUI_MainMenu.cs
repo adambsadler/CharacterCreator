@@ -55,8 +55,10 @@ namespace CharacterCreator.ConsoleProgram
                         "2. View all characters.\n" +
                         "3. Create a new characters.\n" +
                         "4. Delete a character.\n" +
-                        "5. Logout.\n" +
-                        "6. Quit.\n");
+                        "5. View all Backgrounds.\n" +
+                        "6. View all Skills.\n" +
+                        "7. Logout.\n" +
+                        "8. Quit.\n");
                 string response = Console.ReadLine();
 
                 switch (response)
@@ -82,10 +84,26 @@ namespace CharacterCreator.ConsoleProgram
                         break;
 
                     case "5":
+                        // View Backgrounds
+                        ConsoleUI_BackgroundList nextConsole_Backgrounds = new ConsoleUI_BackgroundList(_baseURL, _token);
+                        GoToNextPage("Background list");
+                        nextConsole_Backgrounds.Run_MainMenu();
+                        GoBack();
+                        break;
+
+                    case "6":
+                        // View Skills
+                        ConsoleUI_SkillList nextConsole_Skills = new ConsoleUI_SkillList(_baseURL, _token);
+                        GoToNextPage("Skill list");
+                        nextConsole_Skills.Run_MainMenu();
+                        GoBack();
+                        break;
+
+                    case "7":
                         // Logout and return to main menu
                         return;
 
-                    case "6":
+                    case "8":
                         // Quit
                         Environment.Exit(0);
                         return;
