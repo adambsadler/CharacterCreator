@@ -24,6 +24,22 @@ namespace CharacterCreator.ConsoleProgram
 
             // Get player object
             _player = _controller.GetFirstPlayerForToken();
+
+            if(_player is null)
+            {
+                Player newPlayer = new Player();
+                newPlayer.Name = "New Player";
+
+                bool success = _controller.CreateNewPlayer(newPlayer);
+
+                if(success)
+                {
+                    _player = _controller.GetFirstPlayerForToken();
+                }else
+                {
+                    _player = newPlayer;
+                }
+            }
         }
 
         public void Run_MainMenu()

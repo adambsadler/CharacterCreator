@@ -1,10 +1,15 @@
 ﻿namespace CharacterCreator.Data.Migrations
 {
+    using CsvHelper;
     using System;
     using System.Collections.Generic;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
+    using System.Globalization;
+    using System.IO;
     using System.Linq;
+    using System.Reflection;
+    using System.Text;
 
     internal sealed class Configuration : DbMigrationsConfiguration<CharacterCreator.Data.ApplicationDbContext>
     {
@@ -20,6 +25,9 @@
 
             //  You can use the DbSet<T>.AddOrUpdate() helper extension method
             //  to avoid creating duplicate seed data.
+
+
+            // Seed Skills
 
             List<Skill> defaultSkills = new List<Skill>();
 
@@ -79,9 +87,77 @@
             {
                 context.Skills.AddOrUpdate<Skill>(s);
             }
+
+
+            // Seed Backgrounds
+
+            List<Background> defaultBackgrounds = new List<Background>();
+
+            defaultBackgrounds.Add(new Background("Acolyte", 
+                "Languages: 2; Tools: None; Skill proficiencies: Insight, Religion", 
+                "Shelter of the Faithful"));
+            defaultBackgrounds.Add(new Background("Charlatan", 
+                "Languages: none; Tools: Disguise kit, forgery kit; Skill proficiencies: Deception (CHA), sleight of hand (DEX)", 
+                "False Identity"));
+            defaultBackgrounds.Add(new Background("Criminal", 
+                "Languages: none; Tools: Gaming set x1, thieves' tools; Skill proficiencies: Deception (CHA), stealth (DEX)", 
+                "Criminal Contact"));
+            defaultBackgrounds.Add(new Background("Entertainer", 
+                "Languages: none; Tools: Disguise kit, musical instrument x1; Skill proficiencies: Acrobatics (DEX), performance (CHA)", 
+                "By Popular Demand"));
+            defaultBackgrounds.Add(new Background("Folk Hero", 
+                "Languages: none; Tools: Artisan's tools x1, vehicles (land); Skill proficiencies: Animal handling (WIS), survival (WIS)", 
+                "Rustic Hospitality"));
+            defaultBackgrounds.Add(new Background("Gladiator", 
+                "Languages: none; Tools: Disguise kit, unusual weapon x1; Skill proficiencies: Acrobatics (DEX), performance (CHA)", 
+                "Contacts"));
+            defaultBackgrounds.Add(new Background("Guild Artisan", 
+                "Languages: 1; Tools: Artisan's tools x1; Skill proficiencies: Insight (WIS), persuasion (CHA)", 
+                "Guild Membership"));
+            defaultBackgrounds.Add(new Background("Guild Merchant", 
+                "Languages: 1; Tools: Navigator's tools; Skill proficiencies: Insight (WIS), persuasion (CHA)", 
+                "Guild Membership"));
+            defaultBackgrounds.Add(new Background("Hermit", 
+                "Languages: 1; Tools: Herbalism kit; Skill proficiencies: Medicine (WIS), religion (INT)", 
+                "Discovery"));
+            defaultBackgrounds.Add(new Background("Knight", 
+                "Languages: 1; Tools: Gaming set x1; Skill proficiencies: History (INT), persuasion (CHA)", 
+                "Squire"));
+            defaultBackgrounds.Add(new Background("Noble", 
+                "Languages: 1; Tools: Gaming set x1; Skill proficiencies: History (INT), persuasion (CHA)", 
+                "Position of Privilege"));
+            defaultBackgrounds.Add(new Background("Outlander", 
+                "Languages: 1; Tools: Musical instrument x1; Skill proficiencies: Athletics (STR), survival (WIS)", 
+                "Wanderer"));
+            defaultBackgrounds.Add(new Background("Pirate", 
+                "Languages: none; Tools: Navigator's tools, vehicles (water); Skill proficiencies: Athletics (STR), perception (WIS)", 
+                "No Honour"));
+            defaultBackgrounds.Add(new Background("Sage", 
+                "Languages: 2; Tools: None; Skill proficiencies: Arcana (INT), history (INT)", 
+                "Researcher"));
+            defaultBackgrounds.Add(new Background("Sailor", 
+                "Languages: none; Tools: Navigator's tools, vehicles (water); Skill proficiencies: Athletics (STR), perception (WIS)", 
+                "Ship's Passage"));
+            defaultBackgrounds.Add(new Background("Soldier", 
+                "Languages: none; Tools: Gaming set x1, vehicles (land); Skill proficiencies: Athletics (STR), intimidation (CHA)", 
+                "Military Rank"));
+            defaultBackgrounds.Add(new Background("Spy", 
+                "Languages: none; Tools: Gaming set x1, thieves' tools; Skill proficiencies: Deception (CHA), stealth (DEX)", 
+                "Spy Contact"));
+            defaultBackgrounds.Add(new Background("Urchin", 
+                "Languages: none; Tools: Disguise kit, thieves' tools; Skill proficiencies: Sleight of hand (DEX), stealth (DEX)", 
+                "City Secrets"));
+
+            foreach (Background b in defaultBackgrounds)
+            {
+                context.Backgrounds.AddOrUpdate<Background>(b);
+            }
+
+
+            // Save changes
+
             base.Seed(context);
             context.SaveChanges();
-
         }
     }
 }
