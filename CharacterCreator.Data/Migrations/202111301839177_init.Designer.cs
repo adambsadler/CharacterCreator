@@ -13,7 +13,7 @@ namespace CharacterCreator.Data.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "202111301551086_init"; }
+            get { return "202111301839177_init"; }
         }
         
         string IMigrationMetadata.Source

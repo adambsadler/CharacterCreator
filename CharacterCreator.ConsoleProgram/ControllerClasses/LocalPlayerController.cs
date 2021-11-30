@@ -20,6 +20,21 @@ namespace CharacterCreator.ConsoleProgram.ControllerClasses
             _httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token.AccessToken);
         }
 
+        public bool CreateNewPlayer(Player p)
+        {
+            string url = _baseURL + "/api/Player";
+
+            var pairs = new List<KeyValuePair<string, string>>
+                        {
+                            new KeyValuePair<string, string>( "Name", p.Name ),
+                        };
+            var content = new FormUrlEncodedContent(pairs);
+
+            var response = _httpClient.PostAsync(url, content).Result;
+
+            return response.IsSuccessStatusCode;
+        }
+
         public Player GetFirstPlayerForToken()
         {
             string url = _baseURL + "/api/Player";
@@ -31,6 +46,9 @@ namespace CharacterCreator.ConsoleProgram.ControllerClasses
                 return null;
 
             List<Player> players = response.Content.ReadAsAsync<List<Player>>().Result;
+
+            if (players.Count == 0)
+                return null;
 
             return players.First<Player>();
             

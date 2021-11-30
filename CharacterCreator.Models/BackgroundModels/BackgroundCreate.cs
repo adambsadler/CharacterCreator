@@ -15,11 +15,11 @@ namespace CharacterCreator.Models.BackgroundModels
         public string Name { get; set; }
         [Required]
         [MinLength(2, ErrorMessage = "Error: background description must be at least 2 characters long.")]
-        [MaxLength(500, ErrorMessage = "Error: background description must be 500 characters or less.")]
+        [MaxLength(3000, ErrorMessage = "Error: background description must be 500 characters or less.")]
         public string Description { get; set; }
         [Required]
         [MinLength(2, ErrorMessage = "Error: background feature must be at least 2 characters long.")]
-        [MaxLength(100, ErrorMessage = "Error: background feature must be 100 characters or less.")]
+        [MaxLength(3000, ErrorMessage = "Error: background feature must be 100 characters or less.")]
         public string Feature { get; set; }
     }
 }
