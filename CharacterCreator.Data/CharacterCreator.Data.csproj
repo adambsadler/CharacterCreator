@@ -90,13 +90,9 @@
     <Compile Include="Background.cs" />
     <Compile Include="Character.cs" />
     <Compile Include="IdentityModels.cs" />
-    <Compile Include="Migrations\202111190125313_Init.cs" />
-    <Compile Include="Migrations\202111190125313_Init.designer.cs">
-      <DependentUpon>202111190125313_Init.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202111190137404_update.cs" />
-    <Compile Include="Migrations\202111190137404_update.designer.cs">
-      <DependentUpon>202111190137404_update.cs</DependentUpon>
+    <Compile Include="Migrations\202111301551086_init.cs" />
+    <Compile Include="Migrations\202111301551086_init.designer.cs">
+      <DependentUpon>202111301551086_init.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Player.cs" />
@@ -108,11 +104,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202111190125313_Init.resx">
-      <DependentUpon>202111190125313_Init.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202111190137404_update.resx">
-      <DependentUpon>202111190137404_update.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202111301551086_init.resx">
+      <DependentUpon>202111301551086_init.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

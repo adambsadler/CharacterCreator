@@ -17,8 +17,17 @@ namespace CharacterCreator.Data
         [MaxLength(240, ErrorMessage ="Error: skill name must be 240 characters or less.")]
         public string Name { get; set; }
 
-        [Required, MaxLength(500, ErrorMessage = "Error: skill description must be 500 characters or less.")]
+        [Required]
         public string Description { get; set; }
         public string AbilityType { get; set; }
+
+        public Skill() { }
+
+        public Skill(string name, string description, string abilityType)
+        {
+            Name = name;
+            Description = description;
+            AbilityType = abilityType;
+        }
     }
 }
