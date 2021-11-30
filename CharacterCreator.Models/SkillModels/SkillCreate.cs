@@ -14,7 +14,6 @@ namespace CharacterCreator.Models.SkillModels
         [MaxLength(240, ErrorMessage = "Error: skill name must be 240 characters or less.")]
         public string Name { get; set; }
 
-        [Required, MaxLength(500, ErrorMessage = "Error: skill description must be 500 characters or less.")]
         public string Description { get; set; }
         public string AbilityType { get; set; }
     }
