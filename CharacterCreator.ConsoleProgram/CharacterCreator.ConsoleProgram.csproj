@@ -54,6 +54,8 @@
   <ItemGroup>
     <Compile Include="ConsoleUI.cs" />
     <Compile Include="ConsoleUI_BackgroundList.cs" />
+    <Compile Include="ConsoleUI_CharacterInfo.cs" />
+    <Compile Include="ConsoleUI_CharacterList.cs" />
     <Compile Include="ConsoleUI_MainMenu.cs" />
     <Compile Include="ConsoleUI_SkillList.cs" />
     <Compile Include="ControllerClasses\LocalBackgroundController.cs" />
