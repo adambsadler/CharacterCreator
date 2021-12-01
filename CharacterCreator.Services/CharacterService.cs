@@ -26,13 +26,29 @@ namespace CharacterCreator.Services
                     Race = model.Race,
                     CharacterClass = model.CharacterClass,
                     BackgroundId = model.BackgroundId,
-                    PlayerId = model.PlayerId,
-                    SkillProficiencies = model.SkillProficiencies
+                    PlayerId = model.PlayerId
                 };
 
             using (var ctx = new ApplicationDbContext())
             {
                 ctx.Characters.Add(entity);
+                bool success = ctx.SaveChanges() > 0;
+                if (!success)
+                    return false;
+
+                foreach (int skillID in GetIntsFromString(model.SkillProficiencyIds))
+                {
+                    try
+                    {
+                        var skill =
+                        ctx
+                            .Skills
+                            .Single(e => e.SkillId == skillID);
+                        entity.SkillProficiencies.Add(skill);
+                    }
+                    catch {}
+                }
+
                 return ctx.SaveChanges() > 0;
             }
         }
@@ -45,7 +61,7 @@ namespace CharacterCreator.Services
                 {
                     var query =
                     ctx
-                        .Characters
+                        .Characters    
                         .Select(
                             e =>
                                 new CharacterListItem
@@ -61,7 +77,7 @@ namespace CharacterCreator.Services
                                     Race = e.Race,
                                     CharacterClass = e.CharacterClass,
                                     Background = e.Background,
-                                    SkillProficiencies = e.SkillProficiencies
+                                    SkillProficiencies = e.SkillProficiencies.ToList<Skill>()
                                 });
 
                     return query.ToArray();
@@ -97,7 +113,7 @@ namespace CharacterCreator.Services
                         Race = entity.Race,
                         CharacterClass = entity.CharacterClass,
                         Background = entity.Background,
-                        SkillProficiencies = entity.SkillProficiencies
+                        SkillProficiencies = entity.SkillProficiencies.ToList<Skill>()
                     };
                 }
                 catch
@@ -128,7 +144,24 @@ namespace CharacterCreator.Services
                     entity.Race = model.Race;
                     entity.CharacterClass = model.CharacterClass;
                     entity.Background = model.Background;
-                    entity.SkillProficiencies = entity.SkillProficiencies;
+                    entity.SkillProficiencies.Clear();
+
+                    bool success = ctx.SaveChanges() > 0;
+                    if (!success)
+                        return false;
+
+                    foreach (int skillID in GetIntsFromString(model.SkillProficiencyIds))
+                    {
+                        try
+                        {
+                            var skill =
+                            ctx
+                                .Skills
+                                .Single(e => e.SkillId == skillID);
+                            entity.SkillProficiencies.Add(skill);
+                        }
+                        catch { }
+                    }
 
                     return ctx.SaveChanges() > 0;
                 }
@@ -159,6 +192,25 @@ namespace CharacterCreator.Services
                     return false;
                 }
             }
+        }
+
+
+        // Helper method
+        public List<int> GetIntsFromString(string input)
+        {
+            List<int> intList = new List<int>();
+
+            string[] splitStrings = input.Split(',');
+            foreach(string s in splitStrings)
+            {
+                try
+                {
+                    intList.Add(int.Parse(s.Trim()));
+                }
+                catch { }
+            }
+
+            return intList;
         }
     }
 }
