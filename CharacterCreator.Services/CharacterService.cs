@@ -36,20 +36,26 @@ namespace CharacterCreator.Services
                 if (!success)
                     return false;
 
-                foreach (int skillID in GetIntsFromString(model.SkillProficiencyIds))
+                List<int> skillIds = GetIntsFromString(model.SkillProficiencyIds);
+                if (skillIds != null && skillIds.Count > 0)
                 {
-                    try
+                    foreach (int skillID in skillIds)
                     {
-                        var skill =
-                        ctx
-                            .Skills
-                            .Single(e => e.SkillId == skillID);
-                        entity.SkillProficiencies.Add(skill);
+                        try
+                        {
+                            var skill =
+                            ctx
+                                .Skills
+                                .Single(e => e.SkillId == skillID);
+                            entity.SkillProficiencies.Add(skill);
+                        }
+                        catch { }
                     }
-                    catch {}
+
+                    return ctx.SaveChanges() > 0;
                 }
 
-                return ctx.SaveChanges() > 0;
+                return success;
             }
         }
 
@@ -143,7 +149,7 @@ namespace CharacterCreator.Services
                     entity.Charisma = model.Charisma;
                     entity.Race = model.Race;
                     entity.CharacterClass = model.CharacterClass;
-                    entity.Background = model.Background;
+                    entity.BackgroundId = model.BackgroundId;
                     entity.SkillProficiencies.Clear();
 
                     bool success = ctx.SaveChanges() > 0;
@@ -199,6 +205,8 @@ namespace CharacterCreator.Services
         public List<int> GetIntsFromString(string input)
         {
             List<int> intList = new List<int>();
+            if (input is null || input.Trim() == "")
+                return null;
 
             string[] splitStrings = input.Split(',');
             foreach(string s in splitStrings)

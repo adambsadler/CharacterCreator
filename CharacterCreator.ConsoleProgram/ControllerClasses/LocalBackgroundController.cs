@@ -32,5 +32,17 @@ namespace CharacterCreator.ConsoleProgram.ControllerClasses
 
             return response.Content.ReadAsAsync<List<Background>>().Result;
         }
+
+        public Background GetBackgroundById(int id)
+        {
+            string url = _baseURL + "/api/Background/" + id.ToString();
+
+            var response = _httpClient.GetAsync(url).Result;
+
+            if (!response.IsSuccessStatusCode)
+                return null;
+
+            return response.Content.ReadAsAsync<Background>().Result;
+        }
     }
 }

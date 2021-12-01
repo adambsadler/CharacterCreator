@@ -22,13 +22,24 @@ namespace CharacterCreator.ConsoleProgram.ControllerClasses
         }
 
 
-        public bool CreateNewCharacter(Character character)
+        public bool CreateNewCharacter(Character newCharacter, string skillProficiencyIds)
         {
             string url = _baseURL + "/api/Character";
 
             var pairs = new List<KeyValuePair<string, string>>
                         {
-                            new KeyValuePair<string, string>( "Name", character.Name ),
+                            new KeyValuePair<string, string>( "PlayerId", newCharacter.PlayerId.ToString() ),///////////////
+                            new KeyValuePair<string, string>( "Name", newCharacter.Name ),
+                            new KeyValuePair<string, string>( "Strength", newCharacter.Strength.ToString() ),
+                            new KeyValuePair<string, string>( "Dexterity", newCharacter.Dexterity.ToString() ),
+                            new KeyValuePair<string, string>( "Constitution", newCharacter.Constitution.ToString() ),
+                            new KeyValuePair<string, string>( "Intelligence", newCharacter.Intelligence.ToString() ),
+                            new KeyValuePair<string, string>( "Wisdom", newCharacter.Wisdom.ToString() ),
+                            new KeyValuePair<string, string>( "Charisma", newCharacter.Charisma.ToString() ),
+                            new KeyValuePair<string, string>( "Race", newCharacter.Race ),
+                            new KeyValuePair<string, string>( "CharacterClass", newCharacter.CharacterClass ),
+                            new KeyValuePair<string, string>( "BackgroundId", newCharacter.BackgroundId.ToString() ),///////////////
+                            new KeyValuePair<string, string>( "SkillProficiencyIds", skillProficiencyIds )///////////////
                         };
             var content = new FormUrlEncodedContent(pairs);
 
@@ -48,14 +59,37 @@ namespace CharacterCreator.ConsoleProgram.ControllerClasses
             return response.Content.ReadAsAsync<List<Character>>().Result;
         }
 
-        public bool UpdateCharacter(int id, Character newCharacter)
+        public Character GetCharacterById(int id)
+        {
+            string url = _baseURL + "/api/Character/" + id.ToString();
+
+            var response = _httpClient.GetAsync(url).Result;
+
+            if (!response.IsSuccessStatusCode)
+                return null;
+
+            return response.Content.ReadAsAsync<Character>().Result;
+        }
+
+        public bool UpdateCharacter(int id, Character newCharacter, string skillProficiencyIds)
         {
             string url = _baseURL + "/api/Character";
 
             var pairs = new List<KeyValuePair<string, string>>
                         {
+                            new KeyValuePair<string, string>( "CharacterId", newCharacter.CharacterId.ToString() ),
+                            new KeyValuePair<string, string>( "PlayerId", newCharacter.PlayerId.ToString() ),///////////////
                             new KeyValuePair<string, string>( "Name", newCharacter.Name ),
-                            new KeyValuePair<string, string>( "CharacterId", id.ToString() ),
+                            new KeyValuePair<string, string>( "Strength", newCharacter.Strength.ToString() ),
+                            new KeyValuePair<string, string>( "Dexterity", newCharacter.Dexterity.ToString() ),
+                            new KeyValuePair<string, string>( "Constitution", newCharacter.Constitution.ToString() ),
+                            new KeyValuePair<string, string>( "Intelligence", newCharacter.Intelligence.ToString() ),
+                            new KeyValuePair<string, string>( "Wisdom", newCharacter.Wisdom.ToString() ),
+                            new KeyValuePair<string, string>( "Charisma", newCharacter.Charisma.ToString() ),
+                            new KeyValuePair<string, string>( "Race", newCharacter.Race ),
+                            new KeyValuePair<string, string>( "CharacterClass", newCharacter.CharacterClass ),
+                            new KeyValuePair<string, string>( "BackgroundId", newCharacter.BackgroundId.ToString() ),///////////////
+                            new KeyValuePair<string, string>( "SkillProficiencyIds", skillProficiencyIds )///////////////
                         };
             var content = new FormUrlEncodedContent(pairs);
 

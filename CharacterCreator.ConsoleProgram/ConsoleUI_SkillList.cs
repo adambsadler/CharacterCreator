@@ -36,7 +36,7 @@ namespace CharacterCreator.ConsoleProgram
 
                 PrintAllSkills();
 
-                Console.WriteLine("\n" + CONST_DASHES + "\n\nEnter a Skill Id to view skill information information " +
+                Console.WriteLine("\n" + CONST_DASHES + "\n\nEnter a Skill Id to view skill information " +
                     "or press enter to return to the previous menu:\n");
                 string response = Console.ReadLine();
 
