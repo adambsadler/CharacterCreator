@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -21,10 +22,21 @@ namespace CharacterCreator.Data
         public string Description { get; set; }
         public string AbilityType { get; set; }
 
-        public Skill() { }
+        [JsonIgnore]
+        public virtual ICollection<Character> CharactersWithProficiency { get; set; }
+
+
+        // Constructors
+
+        public Skill() 
+        {
+            CharactersWithProficiency = new HashSet<Character>();
+        }
 
         public Skill(string name, string description, string abilityType)
         {
+            CharactersWithProficiency = new HashSet<Character>();
+
             Name = name;
             Description = description;
             AbilityType = abilityType;
