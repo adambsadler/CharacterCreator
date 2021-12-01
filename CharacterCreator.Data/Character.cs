@@ -1,6 +1,8 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,9 +14,14 @@ namespace CharacterCreator.Data
         [Key]
         public int CharacterId { get; set; }
         [Required]
+        [MinLength(2, ErrorMessage = "Error: character's name must be at least 2 characters long.")]
+        [MaxLength(50, ErrorMessage = "Error: character's name must be 50 characters or less.")]
         public string Name { get; set; }
+        [Required, ForeignKey(nameof(Player))]
+        public int PlayerId { get; set; }
+        public virtual Player Player { get; set; }
         [Required]
-        [Range(8,15, ErrorMessage ="Please enter a number between 8 and 15.")]
+        [Range(8,15, ErrorMessage = "Please enter a number between 8 and 15.")]
         public int Strength { get; set; }
         [Required]
         [Range(8, 15, ErrorMessage = "Please enter a number between 8 and 15.")]
@@ -35,9 +42,18 @@ namespace CharacterCreator.Data
         public string Race { get; set; }
         [Required]
         public string CharacterClass { get; set; }
+        [Required, ForeignKey(nameof(Background))]
+        public int BackgroundId { get; set; }
+        public virtual Background Background { get; set; }
 
-        // Add Background
+        public virtual ICollection<Skill> SkillProficiencies { get; set; }
 
-        // Add Skill Proficiencies
+
+        // Constructors
+        
+        public Character()
+        {
+            SkillProficiencies = new HashSet<Skill>();
+        }
     }
 }
