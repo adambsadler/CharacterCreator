@@ -41,6 +41,6 @@ Some stretch goals we didn't hit yet:
 - [GitHub Repository](https://github.com/adambsadler/CharacterCreator)
 - [Assignment Requirements and Rubric](https://elevenfifty.instructure.com/courses/799/assignments/17170?module_item_id=72088)
 - [Google Document](https://docs.google.com/document/d/1D9B7eja5Rh8hT407lgjJ4Kd6o0anSv4hyD8ibrTC6kM/edit?usp=sharing)
-
+- [Presentation](https://docs.google.com/presentation/d/1cvOM5LWeHJ55A92-dBAy7VDrLSwuier8v_2povSd76U/edit?usp=sharing)
 
 ---
