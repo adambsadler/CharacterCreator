@@ -70,17 +70,27 @@ namespace CharacterCreator.ConsoleProgram
 
                     case "2":
                         // View all characters
-
+                        ConsoleUI_CharacterList nextConsole_CharacterList_View = new ConsoleUI_CharacterList(_baseURL, _token, ListState.ViewOnly);
+                        GoToNextPage("Character list (view)");
+                        nextConsole_CharacterList_View.Run_MainMenu();
+                        GoBack();
                         break;
 
                     case "3":
                         // Create a new character
+                        ConsoleUI_CharacterInfo nextConsole_CharacterInfo = new ConsoleUI_CharacterInfo(_baseURL, _token, null, _player, true);
+                        GoToNextPage("Character creation");
+                        nextConsole_CharacterInfo.Run_MainMenu();
+                        GoBack();
 
                         break;
 
                     case "4":
                         // Delete a character
-
+                        ConsoleUI_CharacterList nextConsole_CharacterList_Delete = new ConsoleUI_CharacterList(_baseURL, _token, ListState.Delete);
+                        GoToNextPage("Character list (delete)");
+                        nextConsole_CharacterList_Delete.Run_MainMenu();
+                        GoBack();
                         break;
 
                     case "5":
