@@ -115,9 +115,9 @@
     <Compile Include="Background.cs" />
     <Compile Include="Character.cs" />
     <Compile Include="IdentityModels.cs" />
-    <Compile Include="Migrations\202112010153554_init.cs" />
-    <Compile Include="Migrations\202112010153554_init.designer.cs">
-      <DependentUpon>202112010153554_init.cs</DependentUpon>
+    <Compile Include="Migrations\202112030008103_init.cs" />
+    <Compile Include="Migrations\202112030008103_init.designer.cs">
+      <DependentUpon>202112030008103_init.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Player.cs" />
@@ -130,8 +130,8 @@
     <Compile Include="Skill.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202112010153554_init.resx">
-      <DependentUpon>202112010153554_init.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202112030008103_init.resx">
+      <DependentUpon>202112030008103_init.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
