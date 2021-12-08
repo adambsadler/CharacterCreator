@@ -123,7 +123,7 @@ namespace CharacterCreator.ConsoleProgram
 
                 foreach (Character character in _characters)
                 {
-                    Console.WriteLine("{0,-10}{1,-50}{2,-15}{3,-30}",
+                    Console.WriteLine("{0,-10}{1,-25}{2,-15}{3,-30}",
                         character.CharacterId,
                         character.Name,
                         character.Race,

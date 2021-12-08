@@ -53,7 +53,7 @@ namespace CharacterCreator.ConsoleProgram
                 //Console.WriteLine("Welcome to the Character Creator for Dungeons & Dragons 5e! What would you like to do?");
                 Console.WriteLine("1. Change player name.\n" +
                         "2. View all characters.\n" +
-                        "3. Create a new characters.\n" +
+                        "3. Create a new character.\n" +
                         "4. Delete a character.\n" +
                         "5. View all Backgrounds.\n" +
                         "6. View all Skills.\n" +
